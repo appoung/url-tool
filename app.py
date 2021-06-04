@@ -29,5 +29,10 @@ def shorturl():
     else:
         result="Error Code:" + rescode
     return render_template("short-url.html",result=result)
+@app.route("/qr",methods=['POST'])
+def qr():
+    url = rq.form['url']
+    result = ("https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl="+url)
+    return render_template("qr.html",result=result)
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port="5000",debug=True)
+    app.run(host="0.0.0.0",port="80")
